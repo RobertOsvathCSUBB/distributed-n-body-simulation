@@ -12,7 +12,7 @@ The simulation is plotted in real-time, and the performance is measured by the f
 
 ## Prerequisites
 
-To run the simulation, you need to have [MPI](https://www.microsoft.com/en-us/download/details.aspx?id=105289) installed, as well as the [python library](https://pypi.org/project/mpi4py/) for it installed.
+To run the simulation, you need to have [MPI](https://www.microsoft.com/en-us/download/details.aspx?id=105289) installed, as well as the [python library](https://pypi.org/project/mpi4py/) for it.
 
 ```bash
 pip install mpi4py
