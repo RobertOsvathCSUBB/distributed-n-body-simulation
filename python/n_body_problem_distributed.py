@@ -42,23 +42,29 @@ def calculate_accelerations(positions, masses):
 
     return accelerations
 
+start_time = time.time()
+frame_count = 0
+
 def main():
     """ N-body problem simulation """
+    global frame_count
 
     # Simulation parameters
-    N = 100 # Number of bodies
+    N = 1000 # Number of bodies
     t = 0 # Current time of the simulation
-    dt = 0.01 # Time step
+    t_end = 1 # End time of the simulation
+    dt = 1.0 / 60 # Time step
 
     # Prep figure
-    _ , ax = plt.subplots()
+    fig , ax = plt.subplots()
+    fig.canvas.mpl_connect('close_event', on_close)
 
     # Initialize everything in the root process
     if comm.rank == 0:
         # Initial conditions
-        positions = np.random.randn(N, 2) * 5
-        masses = np.random.rand(N) * 5
-        velocities = np.random.randn(N, 2)
+        positions = np.random.randn(N, 2) * 100
+        masses = np.random.rand(N)
+        velocities = np.random.randn(N, 2) * 100
 
         # Convert to Center-of-Mass frame
         # velocities -= np.mean(masses * velocities,0) / np.mean(masses)
@@ -73,7 +79,7 @@ def main():
     velocities = comm.bcast(velocities, root=0)
 
     # Main loop
-    while True:
+    while t <= t_end:
         ## Updateing positions using a leap-frog scheme
 
         # Calculate accelerations
@@ -119,12 +125,23 @@ def main():
             ax.clear()
             colors = cm.rainbow(np.linspace(0, 1, positions.shape[0]))
             ax.scatter(positions[:, 0], positions[:, 1], s=masses * 100, c=colors)
-            ax.set_xlim(-100, 100)
-            ax.set_ylim(-100, 100)
-            ax.set_aspect('equal', 'box')
             ax.set_title(f"t = {t:.2f}")
+            ax.grid(False)
+            ax.set_facecolor('black')
             plt.pause(0.01)
 
+            frame_count += 1
+
+def on_close(_):
+    '''
+    Calculate the average fps when the window is closed
+    '''
+    if comm.rank == 0:
+        end_time = time.time()
+        duration = end_time - start_time
+        avg_fps = frame_count / duration
+        print(f"Average FPS: {avg_fps:.2f}")
+    exit()
 
 if __name__ == "__main__":
     main()

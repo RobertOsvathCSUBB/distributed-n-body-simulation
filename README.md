@@ -1,11 +1,4 @@
-# N-Body Simulations in 2D 
-
-This project presents two distinct implementations of n-body simulations using parallel and distributed protocols:
-
-- [Lua with threads](#?)
-- [Python with MPI](#python-implementation-using-mpi)
-
-# Python implementation using MPI
+# 2D N-Body Simulations in Python using MPI  
 
 This implementation is based on [this](https://medium.com/swlh/create-your-own-n-body-simulation-with-python-f417234885e9) Medium article, combined with [mpi4py](https://pypi.org/project/mpi4py/).
 
@@ -35,3 +28,13 @@ Feel free to change the simulation parameters and the number of node processes.
 
 ## Benchmarks
 
++--------------------------------------------------------+
+|           Benchmarks - dt = 1/60, t_end = 1            |
++-----------------+-----------+------------+-------------+
+| Nr of processes | 10 bodies | 100 bodies | 1000 bodies |
++-----------------+-----------+------------+-------------+
+|        1        |   17.03   |    8.59    |     0.18    |
+|        2        |   16.74   |   10.94    |     0.34    |
+|        4        |   15.47   |   11.89    |     0.45    |
+|        8        |   15.34   |   12.59    |     0.74    |
++-----------------+-----------+------------+-------------+
