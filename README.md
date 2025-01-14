@@ -26,7 +26,7 @@ mpiexec -n 4 python n_body_problem_distributed.py
 
 Feel free to change the simulation parameters and the number of node processes.
 
-## Benchmarks
+## Benchmark - average frames per second
 
 ```bash
 +--------------------------------------------------------+
