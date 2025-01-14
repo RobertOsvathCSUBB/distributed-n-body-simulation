@@ -28,6 +28,7 @@ Feel free to change the simulation parameters and the number of node processes.
 
 ## Benchmarks
 
+```bash
 +--------------------------------------------------------+
 |           Benchmarks - dt = 1/60, t_end = 1            |
 +-----------------+-----------+------------+-------------+
@@ -38,3 +39,4 @@ Feel free to change the simulation parameters and the number of node processes.
 |        4        |   15.47   |   11.89    |     0.45    |
 |        8        |   15.34   |   12.59    |     0.74    |
 +-----------------+-----------+------------+-------------+
+```
