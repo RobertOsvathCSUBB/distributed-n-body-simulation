@@ -1,4 +1,4 @@
-# 2D N-Body Simulations in Python using MPI  
+# 2D N-Body Simulation in Python using MPI  
 
 This implementation is based on [this](https://medium.com/swlh/create-your-own-n-body-simulation-with-python-f417234885e9) Medium article, combined with [mpi4py](https://pypi.org/project/mpi4py/).
 
